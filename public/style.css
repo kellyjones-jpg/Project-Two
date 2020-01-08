@@ -1,0 +1,8 @@
+body {
+    background-repeat: repeat;
+    background-image: url("./images/cork-board.png");
+}
+
+#note-area {
+    background-color: white;
+}
