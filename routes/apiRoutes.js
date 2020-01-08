@@ -17,6 +17,8 @@ module.exports = function(app) {
 
   // Create a new notes
   app.post("/api/notes", function(req, res) {
+    console.log(req.body);
+    res.json("hey cool story");
     db.idea_db.create(req.body).then(function(dbidea_db) {
       res.json(dbidea_db);
     });

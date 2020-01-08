@@ -8,7 +8,13 @@ $(document).ready(function () {
         console.log("create clicked")
         // eliminate when backend conected
         renderNotes()
-        $.post("/api/createnote", newNote).then(function (data) {
+        console.log(newNote);
+        var newNote = {
+            title: "newsflash",
+            text: "sike"
+        }
+        // capture note from inputs, using jquery
+        $.post("/api/notes", newNote).then(function (data) {
             console.log(data)
             //reload
         })
