@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     M.updateTextFields();
     $('.sidenav').sidenav();
     $("#create-note").on("click", createNote)
@@ -14,8 +15,8 @@ $(document).ready(function () {
             text: "sike"
         }
         // capture note from inputs, using jquery
-        $.post("/api/notes", newNote).then(function (data) {
-            console.log(data)
+        $.post("/api/notes", newNote).then(function (waitingforthis) {
+            console.log(waitingforthis);
             //reload
         })
     }
