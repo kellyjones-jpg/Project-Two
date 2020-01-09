@@ -8,23 +8,26 @@ $(document).ready(function () {
         event.preventDefault()
         console.log("create clicked")
         // eliminate when backend conected
-        renderNotes()
-        console.log(newNote);
+        //renderNotes()
+   
         var newNote = {
-            title: "newsflash",
-            text: "sike"
+            title: $('#title_name').val(),
+            text: $('#text_name').val()
         }
+        console.log(newNote);
         // capture note from inputs, using jquery
         $.post("/api/notes", newNote).then(function (waitingforthis) {
             console.log(waitingforthis);
+           //renderNotes()
             //reload
+            location.reload()
         })
     }
 
     function renderNotes() {
-        console.log("hello");
-        $.get("/api/getNotes").then(function (dbNotes) {
-            console.log(dbNotes)
+        console.log("render");
+        $.get("/api/notes").then(function (dbNotes) {
+            console.log("dbNotes:", dbNotes)
             // ES6  map and filter  
             for (var i = 0; i < dbNotes.length; i++) {
                 //let title = $("#title_name").val()
@@ -33,7 +36,7 @@ $(document).ready(function () {
                 let text = dbNotes[i].text
                 let id = dbNotes[i].id
                 console.log(title, text)
-                let card = `
+                let card = `<div class="col s12 m6 l4">
                 <div class="card">
                     <div class="card-action">
                         <a href="#" class="btn-floating waves-effect waves-light right">
@@ -44,13 +47,14 @@ $(document).ready(function () {
                         <span class="card-title" idDB=${id}>${title}</span>
                         <p>${text}</p>
                     </div>
+                </div>
                 </div>`
-                $("#cardArea").append(card)
+                $("#cardCol").append(card)
                 $(".delete").on("click", deleteNote)
             }
         })
     }
-    function deleteNote() {
+    function deleteNote(id) {
         event.preventDefault()
         console.log("delete clicked")
         // get the id from the note  you will ask for the attribute

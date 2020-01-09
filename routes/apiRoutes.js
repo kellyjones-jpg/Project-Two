@@ -1,9 +1,11 @@
 var db = require("../models");
-
+console.log("api ROUTES")
 module.exports = function(app) {
   // Get all notes
   app.get("/api/notes", function(req, res) {
+    console.log("api GET")
     db.Example.findAll({}).then(function(dbidea_db) {
+      console.log(dbidea_db)
       res.json(dbidea_db);
     });
   });
@@ -19,9 +21,6 @@ module.exports = function(app) {
   app.post("/api/notes", function(req, res) {
 
     console.log(req.body);
-
-    console.log(db.Example)
-
     db.Example.create(req.body).then(function(responseFromDB) {
       // Response
       res.json(responseFromDB);
