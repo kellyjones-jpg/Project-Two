@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "cleopatra14",
     "database": "idea_db",
     "host": "localhost",
     "dialect": "mysql"
