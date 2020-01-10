@@ -40,7 +40,7 @@ $(document).ready(function () {
                 <div class="card">
                     <div class="card-action">
                         <a href="#" class="btn-floating waves-effect waves-light right">
-                        <i class="material-icons delete">clear</i>
+                        <i class="material-icons delete" id="${id}">clear</i>
                         </a>
                     </div>
                     <div class="card-content black-text">
@@ -50,22 +50,32 @@ $(document).ready(function () {
                 </div>
                 </div>`
                 $("#cardCol").append(card)
-                $(".delete").on("click", deleteNote)
+                
             }
         })
     }
+    $(document).on("click", ".delete", function(thisIsWhatIClickedOn) {
+        var id = thisIsWhatIClickedOn.target.id;
+        console.log(id);
+        deleteNote(id);
+    })
     function deleteNote(id) {
-        event.preventDefault()
         console.log("delete clicked")
         // get the id from the note  you will ask for the attribute
-        // let id = $(this).attr("idDB")
+        console.log(id);
         // ajax call with method delete and pass the id
-        $.ajax({   // passing the id to delete in req.params
-            url: "/api/delete/" + id,
-            method: "DELETE"
-        }).then(function (data) {
-            //reload
-        })
+        $.ajax({   // passing the id to delete in req.params,
+            method: "DELETE",
+            url: "/api/notes/" + id
+            
+        }).then(function() {
+            $("#cardCol").empty()
+            renderNotes()
+        });
+
+        
+            
+            
     }
     renderNotes()
 
