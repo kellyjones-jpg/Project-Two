@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "root",
-    "password": "cleopatra14",
+    "password": "root",
     "database": "idea_db",
     "host": "localhost",
     "dialect": "mysql",
