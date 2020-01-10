@@ -69,4 +69,34 @@ $(document).ready(function () {
     }
     renderNotes()
 
+    var apiKey = 'CK3ShTXGxWXZom9G';
+
+    function checkGrammar( noteText ) {
+
+        const queryUrl = `https://api.textgears.com/check.php?text=${noteText.replace(' ', '+')}&key=${apiKey}`;
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET" 
+        }).then(function(res) {
+            console.log(res);
+
+            var resArray = [];
+
+            res.errors.forEach((e,i) => {
+                var tempObject = {
+                    type: errors[i].type,
+                    bad: errors[i].bad,
+                    better: errors[i].better
+                };
+                resArray.push(tempObject);
+            });
+            
+            console.log(resArray);
+            return resArray;
+        });
+    }
+
+
+
 });
