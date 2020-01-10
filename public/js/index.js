@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     M.updateTextFields();
     $('.sidenav').sidenav();
+    $('.modal').modal();
     $("#create-note").on("click", createNote)
 
     function createNote() {
