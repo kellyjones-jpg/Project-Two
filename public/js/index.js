@@ -1,9 +1,16 @@
+import { check } from "prettier";
+
 $(document).ready(function () {
 
     M.updateTextFields();
     $('.sidenav').sidenav();
     $('.modal').modal();
-    $("#create-note").on("click", createNote)
+    $("#create-note").on("click", createNote);
+    $("#spell-check").on("click", function () {
+        var noteText = $("#text_name").val();
+        var modalData = checkGrammar(noteText);
+        
+    });
 
     function createNote() {
         event.preventDefault()
