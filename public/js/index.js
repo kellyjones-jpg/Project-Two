@@ -9,6 +9,8 @@ $(document).ready(function () {
     $("#spell-check").on("click", function () {
         var noteText = $("#text_name").val();
         var modalData = checkGrammar(noteText);
+
+        console.log(modalData);
         
     });
 
@@ -99,20 +101,32 @@ $(document).ready(function () {
         }).then(function(res) {
             console.log(res);
 
-            var resArray = [];
+            var errArray = [];
 
             res.errors.forEach((e,i) => {
                 var tempObject = {
-                    type: errors[i].type,
-                    bad: errors[i].bad,
-                    better: errors[i].better
+                    type: e.type,
+                    bad: e.bad,
+                    better: e.better
                 };
-                resArray.push(tempObject);
+                errArray.push(tempObject);
             });
             
-            console.log(resArray);
-            return resArray;
+            console.log(errArray);
+            renderErrorsToPage(errArray);
+            return errArray;
         });
+    }
+
+    function renderErrorsToPage(errArray) {
+        var modalErrors = $('#errors');
+
+        console.log(modalErrors);
+        
+        errArray.forEach(err => {
+            console.log(err);
+            modalErrors.text(err.better)
+        })
     }
 
 
