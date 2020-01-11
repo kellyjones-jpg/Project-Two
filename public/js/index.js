@@ -1,4 +1,4 @@
-import { check } from "prettier";
+// import { check } from "prettier";
 
 $(document).ready(function () {
 
